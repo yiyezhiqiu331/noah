@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>脚本任务系统登录</title>
+		<link rel="stylesheet" type="text/css" href="../../static/admin/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../../static/admin/css/login.css" />
+	</head>
+    <style>
+        .input-val {
+            width: 200px;
+            height: 32px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            display: block;
+            margin-top: 20px;
+            height: 32px;
+            width: 100px;
+            font-size: 16px;
+        }
+    </style>
+	<body>
+		<div class="m-login-bg">
+			<div class="m-login">
+				<h3>任务脚本系统</h3>
+				<div class="m-login-warp">
+
+
+
+                        <form class="layui-form" action="" >
+
+
+							<div class="layui-form-item">
+							<input type="text" name="mobile" required lay-verify="required|phone|number" placeholder="登陆手机号"  id="mobile" autocomplete="off" class="layui-input">
+						</div>
+                            <div class="error-msg" id="mobile-err"><i class="fa fa-exclamation-circle"></i><span></span></div>
+
+                        <div class="layui-form-item">
+							<input type="text" name="password" required lay-verify="required|password" placeholder="密码" autocomplete="off" class="layui-input">
+						</div>
+                            <div class="error-msg" id="password-err"><i class="fa fa-exclamation-circle"></i><span></span></div>
+
+
+						<div class="layui-form-item m-login-btn">
+
+							<div class="layui-inline">
+								<button class="layui-btn layui-btn-normal " lay-submit lay-filter="login">登录</button>
+							</div>
+							<div class="layui-inline">
+								<button type="reset" class="layui-btn layui-btn-primary">取消</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<p class="copyright">Copyright 2015-2020 by davy</p>
+			</div>
+		</div>
+		<script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../static/admin/js/jquery.min.js"></script>
+
+        <script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form(),
+					layer = layui.layer;
+
+
+				//自定义验证规则
+				form.verify({
+					title: function(value) {
+						if(value.length < 5) {
+							return '标题至少得5个字符啊';
+						}
+					},
+					password: [/(.+){4,12}$/, '密码必须4到12位'],
+					verity: [/(.+){6}$/, '验证码必须是6位'],
+					
+				});
+
+				
+				// 监听提交
+				// form.on('submit(login)', function(data) {
+				// 	layer.alert(JSON.stringify(data.field), {
+				// 		title: '最终的提交信息'
+				// 	})
+				// 	return false;
+				// });
+
+
+                form.on('submit(login)', function(data) {
+                    // layer.msg(JSON.stringify(data.field));
+                    // layer.alert(JSON.stringify(data.field);
+                    // return false;
+                    // var data = {};
+                    // $(this).serializeArray().map(function(x){data[x.name] = x.value;});
+                    // var jsonData = JSON.stringify(data);
+
+                    // layer.alert(JSON.stringify(data.field), {
+                    //     		title: '最终的提交信息'
+                    //     	})
+
+
+                    $.ajax({
+                        url:"/api/v1.0/sessions",
+                        type:"post",
+                        data: JSON.stringify(data.field),
+                        contentType: "application/json",
+                        dataType: "json",
+                        // headers:{
+                        //     "X-CSRFTOKEN":getCookie("csrf_token"),
+                        // },
+                        // success: function (data) {
+                        //     layer.alert(JSON.stringify(data), {
+                        //         title: '最终的提交信息111111'
+                        //     })
+                        // }
+
+
+
+
+
+                    // <div class="layui-form-item">
+                    // <div class="layui-inline">
+                    // <input id="code" type="text" name="verity" required lay-verify="required" placeholder="验证码" autocomplete="off" class="layui-input ">
+                    // </div>
+                    // <div class="layui-inline">
+                    // <canvas id="canvas" width="120" height="40"></canvas>
+                    // </div>
+                    // </div>
+                        success: function (data) {
+                            if ("0" == data.errno) {
+                                // 登录成功，跳转到主页
+                                location.href = "/";
+                                return;
+                            }
+                            else {
+                                // 其他错误信息，在页面中展示
+                                // $("#mobile-err span").html(data.errmsg);
+                                // $("#mobile-err").show();
+                                $("#password-err span").html(data.errmsg);
+                                $("#password-err").show();
+                                return;
+                            }
+                        }
+                    });
+                    return false;
+                });
+
+
+
+            });
+		</script>
+	</body>
+
+</html>

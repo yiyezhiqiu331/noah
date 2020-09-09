@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>公共脚本</title>
+        <link rel="stylesheet" type="text/css" href="../static/layui/css/layui.css" />
+
+	</head>
+
+	<body>
+    <ul class="layui-nav" lay-filter="">
+        <li class="layui-nav-item"><a href="">任务日历</a></li>
+        <li class="layui-nav-item layui-this">
+
+		<a href="javascript:;">脚本库</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="public.html" data-url="public.html" data-id='10' data-text="公共脚本"><span class="l-line"></span>公共脚本</a></dd>
+                <dd><a href="create.html" data-url="create.html" data-id='2' data-text="新建脚本"><span class="l-line"></span>新建脚本</a></dd>
+                <dd><a href="list.html" data-url="list.html" data-id='3' data-text="文件上传"><span class="l-line"></span>文件上传</a></dd>
+                <dd><a href="list.html" data-url="list.html" data-id='4' data-text="脚本列表"><span class="l-line"></span>脚本列表</a></dd>
+                <dd><a href="list.html" data-url="list.html" data-id='5' data-text="审核脚本"><span class="l-line"></span>审核脚本</a></dd>
+                <dd><a href="menu1.html" data-url="menu1.html" data-id='6' data-text="脚本克隆"><span class="l-line"></span>脚本克隆</a></dd>
+                <dd><a href="menu1.html" data-url="menu1.html" data-id='7' data-text="历史纪录"><span class="l-line"></span>历史纪录</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">任务管理</a></li>
+        <li class="layui-nav-item"><a href="">任务组管理</a></li>
+
+        <li class="layui-nav-item"><a href="">审批管理</a></li>
+    </ul>
+    <div class="copyright" style="left: 200px;height: 50px"></div>
+
+    <div class="page-content-wrap">
+					<form class="layui-form" action="">
+						<div class="layui-form-item">
+							<div class="layui-inline tool-btn"></div>
+
+							<div class="layui-inline">
+								<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+							</div>
+							<div class="layui-inline">
+								<select name="states" lay-filter="status">
+									<option value="">请选择一个状态</option>
+									<option value="010">已审核</option>
+									<option value="021">未审核</option>
+								</select>
+							</div>
+							<button class="layui-btn layui-btn-normal" lay-submit="search">搜索</button>
+						</div>
+					</form>
+					<div class="layui-form" id="table-list">
+						<table class="layui-table" lay-skin="line">
+							<colgroup>
+								<col width="50">
+								<col class="hidden-xs" width="500">
+								<col class="hidden-xs" width="130">
+								<col class="hidden-xs" width="130">
+                                <col class="hidden-xs" width="130">
+
+                                <col width="130">
+								<col width="130">
+							</colgroup>
+							<thead>
+								<tr>
+
+									<th class="hidden-xs">ID</th>
+									<th class="hidden-xs">脚本名</th>
+									<th class="hidden-xs">创建人</th>
+									<th>创建时间</th>
+									<th>更新时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id='node-1' class="parent collapsed">
+
+									<td class="hidden-xs">1</td>
+                                    <td class="hidden-xs">tomcat_start.sh</td>
+
+									<td class="hidden-xs">Admin</td>
+									<td>2020-05-02
+
+									</td>
+									<td>2020-06-28</td>
+
+									<td>
+										<div class="layui-inline">查看
+											</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+		</div>
+        <script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            layui.use('element', function(){
+                var element = layui.element;
+                // element.tabChange(filter, data-id);
+			});
+		</script>
+	</body>
+
+</html>

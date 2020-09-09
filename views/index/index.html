@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../static/layui/css/layui.css" />
+</head>
+<body>
+
+
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="">任务日历</a></li>
+    <li class="layui-nav-item layui-this">
+        <a href="javascript:;">脚本库</a>
+        <dl class="layui-nav-child"> <!-- 二级菜单 -->
+            <dd><a href="public.html" data-url="public.html" data-id='10' data-text="公共脚本"><span class="l-line"></span>公共脚本</a></dd>
+            <dd><a href="create.html" data-url="create.html" data-id='2' data-text="新建脚本"><span class="l-line"></span>新建脚本</a></dd>
+            <dd><a href="list.html" data-url="list.html" data-id='3' data-text="文件上传"><span class="l-line"></span>文件上传</a></dd>
+            <dd><a href="list.html" data-url="list.html" data-id='4' data-text="脚本列表"><span class="l-line"></span>脚本列表</a></dd>
+            <dd><a href="list.html" data-url="list.html" data-id='5' data-text="审核脚本"><span class="l-line"></span>审核脚本</a></dd>
+            <dd><a href="menu1.html" data-url="menu1.html" data-id='6' data-text="脚本克隆"><span class="l-line"></span>脚本克隆</a></dd>
+            <dd><a href="menu1.html" data-url="menu1.html" data-id='7' data-text="历史纪录"><span class="l-line"></span>历史纪录</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a href="">任务管理</a></li>
+    <li class="layui-nav-item"><a href="">任务组管理</a></li>
+
+    <li class="layui-nav-item"><a href="">审批管理</a></li>
+</ul>
+{{/*<ul class="layui-nav layui-nav-tree" lay-filter="test">*/}}
+    {{/*<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->*/}}
+    {{/*<li class="layui-nav-item layui-nav-itemed">*/}}
+        {{/*<a href="javascript:;">默认展开</a>*/}}
+        {{/*<dl class="layui-nav-child">*/}}
+            {{/*<dd><a href="javascript:;">选项1</a></dd>*/}}
+            {{/*<dd><a href="javascript:;">选项2</a></dd>*/}}
+            {{/*<dd><a href="">跳转</a></dd>*/}}
+        {{/*</dl>*/}}
+    {{/*</li>*/}}
+    {{/*<li class="layui-nav-item">*/}}
+        {{/*<a href="javascript:;">解决方案</a>*/}}
+        {{/*<dl class="layui-nav-child">*/}}
+            {{/*<dd><a href="">移动模块</a></dd>*/}}
+            {{/*<dd><a href="">后台模版</a></dd>*/}}
+            {{/*<dd><a href="">电商平台</a></dd>*/}}
+        {{/*</dl>*/}}
+    {{/*</li>*/}}
+    {{/*<li class="layui-nav-item"><a href="">产品</a></li>*/}}
+    {{/*<li class="layui-nav-item"><a href="">大数据</a></li>*/}}
+{{/*</ul>*/}}
+<script src="../../static/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+        // element.tabChange(filter, data-id);
+        //添加标签
+
+
+        //…
+    });
+</script>
+
+</body>
+</html>
+

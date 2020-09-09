@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>新建脚本</title>
+        <link rel="stylesheet" type="text/css" href="../static/layui/css/layui.css" />
+
+
+
+        <style >
+            .help-block{
+                color: #999;
+                font-size: 12px;
+            }
+            .label-required-next:after {
+                top: 6px;
+                right: 5px;
+                color: red;
+                content: '*';
+                position: absolute;
+                margin-left: 4px;
+                font-weight: 700;
+                line-height: 1.8em;
+            }
+			.layui-input{
+				width: 850px;
+				/*height: 80px;*/
+			}
+
+            .layui-input-block{
+				width: 850px;
+			}
+			.layui-textarea{
+                width: 850px;
+                resize: both;
+                rows: 5px;
+			}
+			.layui-code{
+				width: 850px;
+				/*height: 20px;*/
+			}
+            /*.layui-input-block{*/
+                /*height: 25px;*/
+            /*}*/
+
+
+
+        </style>
+	</head>
+
+	<body class="page-content-wrap">
+    <ul class="layui-nav" lay-filter="">
+        <li class="layui-nav-item"><a href="">任务日历</a></li>
+        <li class="layui-nav-item layui-this">
+            <a href="javascript:;">脚本库</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="public.html" data-url="public.html" data-id='10' data-text="公共脚本"><span class="l-line"></span>公共脚本</a></dd>
+                <dd><a href="create.html" data-url="create.html" data-id='2' data-text="新建脚本"><span class="l-line"></span>新建脚本</a></dd>
+                <dd><a href="list.html" data-url="list.html" data-id='3' data-text="文件上传"><span class="l-line"></span>文件上传</a></dd>
+                <dd><a href="list.html" data-url="list.html" data-id='4' data-text="脚本列表"><span class="l-line"></span>脚本列表</a></dd>
+                <dd><a href="list.html" data-url="list.html" data-id='5' data-text="审核脚本"><span class="l-line"></span>审核脚本</a></dd>
+                <dd><a href="menu1.html" data-url="menu1.html" data-id='6' data-text="脚本克隆"><span class="l-line"></span>脚本克隆</a></dd>
+                <dd><a href="menu1.html" data-url="menu1.html" data-id='7' data-text="历史纪录"><span class="l-line"></span>历史纪录</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">任务管理</a></li>
+        <li class="layui-nav-item"><a href="">任务组管理</a></li>
+
+        <li class="layui-nav-item"><a href="">审批管理</a></li>
+    </ul>
+    <div class="copyright" style="left: 200px;height: 50px"></div>
+
+
+                            <form class="layui-form" action="">
+
+
+                            <div class="layui-form-item" >
+                            <label class="layui-form-label label-required-next" style="left: 100px">脚本名称</label>
+                            <div class="layui-input-block"  style="left: 100px">
+                                <input type="text" name="title" required  lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                            </div>
+						</div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label " style="left: 100px;height: 5px">脚本参数</label>
+                            <div class="layui-input-block" >
+                                <textarea  name="parameter"  placeholder="请输入内容" class="layui-textarea" style="left: 100px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label label-required-next" style="left: 100px">脚本描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="desc" placeholder="请输入内容" class="layui-textarea" style="left: 100px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" >
+                            <label class="layui-form-label label-required-next" style="left: 100px">所属团队</label>
+                            <div class="layui-input-block" style="left: 100px">
+                                <select name="team" lay-verify="required">
+                                    <option value=""></option>
+                                    <option value="0">大数据</option>
+                                    <option value="1">消费金融</option>
+                                    <option value="2">信用卡</option>
+                                    <option value="3">对公</option>
+                                    <option value="4">平台架构</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label label-required-next" style="left: 100px">脚本类别</label>
+                            <div class="layui-input-block" style="left: 100px">
+                                <select name="type" lay-verify="required">
+                                    <option value=""></option>
+                                    <option value="0">查询</option>
+                                    <option value="1">变更</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label label-required-next" style="left: 100px">脚本语言</label>
+                            <div class="layui-input-block" style="left: 100px">
+                                <select name="language" lay-verify="required">
+                                    <option value=""></option>
+                                    <option value="0">shell</option>
+                                    <option value="1">python</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label label-required-next " style="left: 100px">脚本内容</label>
+                            <div class="layui-input-block">
+                                <textarea name="command" placeholder="请输入内容" class="layui-textarea layui-code" style="left: 100px"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block" style="left: 30px">
+                                <button class="layui-btn" lay-submit lay-filter="formDemo" style="background: #00a0e9" >立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary" >重置</button>
+                            </div>
+                        </div>
+                        </form>
+            <div class="copyright" style="left: 500px;height: 100px"></div>
+        <script src="../../static/layui/layui.js" charset="utf-8"></script>
+        <script>
+            // $("#left-pane").attr("style","overflow: auto;height:inherit;width:95%;position:absolute;left:0;top:2%;right:0;bottom:2%");
+            // layui.use(['jquery','form','layedit','element'], function() {
+				// var $=layui.jquery;
+                // var element = layui.element;
+                // element.tabChange(filter, data-id);
+            layui.use(['jquery','form','layedit','element'], function() {
+
+                var $=layui.jquery;
+                var form = layui.form
+
+                // layer = layui.layer              // var element = layui.element;
+                // element.tabChange(filter, data-id);
+                // var form = layui.form();
+                form.on('submit(formDemo)', function(data) {
+                    $.ajax({
+                        url:"/api/v1.0/createshell",
+                        type:"post",
+                        data: JSON.stringify(data.field),
+                        contentType: "application/json",
+                        dataType: "json",
+
+                        success: function (data) {
+                            if ("0" == data.errno) {
+                                // 登录成功，跳转到主页
+
+                                layer.msg("操作成功", {icon: 1, shade: 0.3, time: 1000}, function () {
+                                    // window.reload();
+                                    top.location.href="/list.html";
+                                    // window.history.go(-1)
+                                    // location.href = "/";
+                                    // window.close() ;
+                                    // window.deleteCurrentTab();
+
+                                    // window.location.href="/list";
+                                })                                // location.href = "/";
+
+                                return true;
+                            }
+                            else {
+                                layer.msg("操作成功", {icon: 1, shade: 0.3, time: 1000}, function () {
+                                    top.location.href="/list.html";
+
+                                    // window.history.go(-1)
+                                    // location.href = "/";
+                                    // window.open("about:blank","_self").close() ;
+                                    // window.close() ;
+                                    // window.deleteCurrentTab();
+
+                                    // window.location.href="/menu1";
+                                })
+                                // location.href = "/";
+
+                                return true;
+                            }
+                        }
+                    });
+                    return false;
+                });
+
+
+
+            });
+
+
+		</script>
+	</body>
+
+</html>
