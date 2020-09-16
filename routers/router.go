@@ -22,9 +22,7 @@ func init() {
 	beego.Router("/api/v1.0/createshell", &controllers.CreateController{})
 	beego.Router("/getlist", &controllers.GetListController{},"*:Get")
 	beego.Router("/test", &controllers.TestController{})
-
-
-
+	beego.Router("/detail", &controllers.DetailController{})
 
 
 

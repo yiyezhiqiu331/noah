@@ -92,3 +92,17 @@ func GetList(page, pageSize int) ([]*Task, int64) {
 
 
 
+func TaskGetById(id int) (*Task, error) {
+	task := &Task{
+		Id: id,
+	}
+
+	err := orm.NewOrm().Read(task)
+	if err != nil {
+		return nil, err
+	}
+	return task, nil
+}
+
+
+

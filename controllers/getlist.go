@@ -36,7 +36,7 @@ func (this*GetListController) Get() {
 	groupResult, n := models.GetList(1, 1000)
 
 	fmt.Print("~~~~~~~~~~~~~~~~\n")
-	fmt.Print(groupResult)
+	fmt.Print(groupResult[1])
 	fmt.Print("~~~~~~~~~~~~~~~~\n")
 
 	out := make(map[string]interface{})

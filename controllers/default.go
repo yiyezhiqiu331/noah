@@ -2,6 +2,15 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
+	"myproject/models"
+	//"PPGo_Job/jobs"
+	//"PPGo_Job/jobs"
+	"myproject/job"
+
+	"time"
+	"bytes"
+	"os/exec"
+	"runtime"
 )
 
 type MainController struct {
@@ -80,4 +89,73 @@ func (c *TestController) Get() {
 	c.TplName = "index/test.html"
 }
 
+
+type DetailController struct {
+	beego.Controller
+}
+
+func (c *DetailController) Get() {
+
+
+	c.TplName = "index/detail.html"
+
+	c.Data["pageTitle"] = "任务详细"
+
+	id, _ := c.GetInt("id")
+	beego.Info("111111111111")
+	beego.Info(id)
+	task, err := models.TaskGetById(id)
+	beego.Info(task)
+	c.Data["task"] = task
+	if err != nil {
+		out := make(map[string]interface{})
+		out["status"] = 200
+		out["message"] = "未发现id"
+		c.Data["json"] = out
+		//c.ajaxMsg(err.Error(), MSG_ERR)
+	}
+
+}
+
+
+
+
+func (self *DetailController) AjaxRun() {
+
+	beego.Info("AjaxRunAjaxRunvAjaxRunAjaxRunAjaxRunAjaxRunvvv")
+	id, _ := self.GetInt("id")
+	task, err := models.TaskGetById(id)
+	if err != nil {
+		out := make(map[string]interface{})
+		out["status"] = 404
+		out["message"] = "未发现id"
+		self.Data["json"] = out
+	}
+	bufOut := new(bytes.Buffer)
+	bufErr := new(bytes.Buffer)
+	//cmd := exec.Command("/bin/bash", "-c", command)
+	var cmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("CMD", "/C", task.Command)
+		beego.Info("+++++++++++++++++")
+		beego.Info(task.Command)
+	} else {
+		cmd = exec.Command("sh", "-c", task.Command)
+		beego.Info("+++++++++++++++++")
+		beego.Info(task.Command)
+	}
+	cmd.Stdout = bufOut
+	cmd.Stderr = bufErr
+	cmd.Start()
+	err, isTimeout := job.RunCmdWithTimeout(cmd, timeout)
+
+	if err != nil {
+		self.ajaxMsg(err.Error(), MSG_ERR)
+	}
+	for _, job := range jobArr {
+		job.Run()
+	}
+
+	self.ajaxMsg("", MSG_OK)
+}
 
