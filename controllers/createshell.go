@@ -125,5 +125,4 @@ func (this*CreateController) Post() {
 	//5.返回json数据给前端
 	resp["errno"] = models.RECODE_OK
 	resp["errmsg"] = models.RecodeText(models.RECODE_OK)
-
 }

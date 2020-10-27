@@ -127,7 +127,9 @@ func (self *DetailController) AjaxRun() {
 	task, err := models.TaskGetById(id)
 	if err != nil {
 		out := make(map[string]interface{})
-		out["status"] = 404
+
+		beego.Info(out["status"])
+		out["status"] = 0
 		out["message"] = "未发现id"
 		self.Data["json"] = out
 	}
@@ -147,15 +149,40 @@ func (self *DetailController) AjaxRun() {
 	cmd.Stdout = bufOut
 	cmd.Stderr = bufErr
 	cmd.Start()
-	err, isTimeout := job.RunCmdWithTimeout(cmd, timeout)
+	job.RunCmdWithTimeout(cmd,  30 * time.Millisecond)
+	beego.Info("-----------------\n")
+	beego.Info(bufOut.String())
 
-	if err != nil {
-		self.ajaxMsg(err.Error(), MSG_ERR)
-	}
-	for _, job := range jobArr {
-		job.Run()
-	}
 
-	self.ajaxMsg("", MSG_OK)
+	out := make(map[string]interface{})
+
+	out["status"] = 0
+	beego.Info(out["status"])
+
+	out["message"] = "success"
+	self.Data["json"] = out
+	self.Data["json"] = bufOut.String()
+
+	//jobresult = new(job.JobResult)
+	//jobresult.OutMsg = bufOut.String()
+	//jobresult.ErrMsg = bufErr.String()
+	//
+	//jobresult.IsOk = true
+	//if err != nil {
+	//	jobresult.IsOk = false
+	//}
+	//
+	//jobresult.IsTimeout = isTimeout
+
+
+
+	//if err != nil {
+	//	self.ajaxMsg(err.Error(), MSG_ERR)
+	//}
+	//for _, job := range jobArr {
+	//	job.Run()
+	//}
+	//
+	//self.ajaxMsg("", MSG_OK)
 }
 
