@@ -157,6 +157,7 @@
                             layer.msg("操作成功",{icon: 1,shade:0.3,time:1000},function () {
                                 layer.msg(out.message)
                                 // window.parent.openTab("/tasklog/list?task_id="+data.id,task_name+'运行日志',"admin_task_log-"+data.id,'');
+                                return
                             })
                         } else {
                             layer.msg(out.message)

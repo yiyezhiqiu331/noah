@@ -23,6 +23,6 @@ func init() {
 	beego.Router("/getlist", &controllers.GetListController{},"*:Get")
 	beego.Router("/test", &controllers.TestController{})
 	beego.Router("/detail", &controllers.DetailController{})
-	beego.Router("/ajaxrun", &controllers.DetailController{},"post:AjaxRun")
+	beego.Router("/ajaxrun", &controllers.DetailController{},"*:Post")
 
 }

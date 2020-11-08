@@ -120,7 +120,7 @@ func (c *DetailController) Get() {
 
 
 
-func (self *DetailController) AjaxRun() {
+func (self *DetailController) Post() {
 
 	beego.Info("AjaxRunAjaxRunvAjaxRunAjaxRunAjaxRunAjaxRunvvv")
 	id, _ := self.GetInt("id")
@@ -149,7 +149,7 @@ func (self *DetailController) AjaxRun() {
 	cmd.Stdout = bufOut
 	cmd.Stderr = bufErr
 	cmd.Start()
-	job.RunCmdWithTimeout(cmd,  30 * time.Millisecond)
+	job.RunCmdWithTimeout(cmd,  60000000 * time.Millisecond)
 	beego.Info("-----------------\n")
 	beego.Info(bufOut.String())
 
@@ -161,7 +161,27 @@ func (self *DetailController) AjaxRun() {
 
 	out["message"] = "success"
 	self.Data["json"] = out
-	self.Data["json"] = bufOut.String()
+	//self.Data["json"] = bufOut.String()
+
+
+
+
+
+
+
+	beego.Info(task.ServerIds,task.Description)
+
+
+	//插入日志
+	log := new(models.TaskLog)
+	log.TaskId = id
+	log.ServerId = task.ServerIds
+	log.ServerName = task.TaskName
+	log.Output = bufOut.String()
+	log.Error = bufOut.String()
+	log.ProcessTime = int(time.Now().Unix())
+	log.CreateTime = int64(time.Now().Unix())
+	models.TaskLogAdd(log)
 
 	//jobresult = new(job.JobResult)
 	//jobresult.OutMsg = bufOut.String()
@@ -184,5 +204,8 @@ func (self *DetailController) AjaxRun() {
 	//}
 	//
 	//self.ajaxMsg("", MSG_OK)
+	beego.Info("1111111111111")
+	self.ServeJSON()
+	self.StopRun()
 }
 

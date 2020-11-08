@@ -26,6 +26,7 @@ func RunCmdWithTimeout(cmd *exec.Cmd, timeout time.Duration) (error, bool) {
 	var err error
 	select {
 	case <-time.After(timeout):
+		beego.Info(timeout)
 		beego.Warn(fmt.Sprintf("任务执行时间超过%d秒，进程将被强制杀掉: %d", int(timeout/time.Second), cmd.Process.Pid))
 		go func() {
 			<-done // 读出上面的goroutine数据，避免阻塞导致无法退出
@@ -38,3 +39,6 @@ func RunCmdWithTimeout(cmd *exec.Cmd, timeout time.Duration) (error, bool) {
 		return err, false
 	}
 }
+
+
+

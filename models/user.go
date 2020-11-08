@@ -32,6 +32,10 @@ func init(){
 	// register model
 	orm.RegisterModel(new(User))
 	orm.RegisterModel(new(Task))
+	orm.RegisterModel(new(TaskLog))
+
+
+
 
 
 	// create table
