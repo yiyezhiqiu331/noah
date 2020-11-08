@@ -1,2 +1,2 @@
 # noah
-A demo  for  shell  in  any  hosts
+A demo  for  shell  on  any  hosts
